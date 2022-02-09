@@ -7,17 +7,20 @@
  const { engine } = require("express-handlebars")
  const bodyParser = require("body-parser")
  const fileFs = require("file-fs")
+ const hdbs = require("handlebars")
+ const hdbsHelpers = require("handlebars-helpers")({ handlebars: hdbs })
 
  const app = express()
 
  app.set("views","./node_modules/file-fs/views")
  app.set("view engine","handlebars")
  app.engine("handlebars",engine({ defaultLayout: "main" }))
+
  app.use(bodyParser.json())
  app.use(bodyParser.urlencoded({ extended: false }))
 
 
- fileFs.config(dir: string,rootDir: string,showHiddenFiles: boolean,lockRootDir: boolean,route: string)
+ fileFs.config(dir: string,rootDir: string,showHiddenFiles: boolean,lockRootDir: boolean,url: string)
 
  fileFs.config("../foo","../foo/",false,true,"/files")
 
