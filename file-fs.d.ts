@@ -1,7 +1,6 @@
 export function config(directory: any, root: any, hidden: any, lock: any, url: any): void;
 export function getInfo(): {
-    url: string;
-    fullUrl: any;
+    url: any;
     dirObj: any[];
     cd: typeof cd;
     root: string;
@@ -9,6 +8,6 @@ export function getInfo(): {
     lockRootDir: boolean;
     showHiddenFiles: boolean;
 };
-declare function cd(): Promise<string[]>;
-export const router: import("express-serve-static-core").Router;
+declare function cd(): Promise<any>;
+export const router: any;
 export {};

@@ -20,9 +20,13 @@ var lockRootDir = true;
 var pathUrl = "/";
 var dirObj = [];
 
-var events = require("events");
-var self = new events.EventEmitter();
-
+/*
+ * @param {String} directory the initial directory to start
+ * @param {String} root the root directory
+ * @param {Boolean} hidden showHiddenFiles
+ * @param {Boolean} lock lock root file directory to not pass root
+ * @param {String} url the url to redirect
+ */
 exports.config = function (directory, root, hidden, lock, url) {
   dir = directory;
   rootDir = root;
@@ -31,6 +35,7 @@ exports.config = function (directory, root, hidden, lock, url) {
   pathUrl = url;
 };
 
+//get file icon
 function getFileType(name) {
   if (name.includes(".mp3"))
     return { type: "fa-file-audio", mime: "audio/mp3" };
@@ -47,6 +52,7 @@ function getFileType(name) {
   else return { type: "fa-file", mime: "plain/text" };
 }
 
+//change directory
 async function cd() {
   dirObj = [];
   var pathDir;
@@ -184,10 +190,10 @@ router.post("/rename", (req, res) => {
   res.redirect(global.pathUrl);
 });
 
+//get info
 exports.getInfo = function () {
   return {
-    url: pathUrl,
-    fullUrl: global.fullUrl,
+    url: global.pathUrl,
     dirObj: dirObj,
     cd: cd,
     root: rootDir,
