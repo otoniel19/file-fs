@@ -1,0 +1,32 @@
+<style>
+  div {
+    text-decoration: none;
+    font-size: 30px;
+  }
+  a {
+    text-decoration: none;
+  }
+</style>
+<center>
+  <div class="card">
+    <pre><a href="{{ url }}/upDir"><i class="fa fa-arrow-up"></i></a> <a href="{{url}}"><i class="fa fa-folder-plus" onclick="var newFolderName = prompt('input folder name: '); window.open(`{{url}}/create=dir&${newFolderName}`);"></i></a> <a href="{{url}}"><i class="fa fa-file-plus" onclick="var newFileName=prompt('input file name: '); window.open(`{{url}}/create=file&${newFileName}`);"></i></a></pre>
+  </div>
+</center>
+
+<div class="card card-body">
+  {{#each dir}}
+  <!-- for files -->
+  {{#if (eq type "file")}}
+  <pre><a href="{{ url }}/action={{ type }}&{{ fs }}&openConfig"><i class="fa fa-cog"></i></a> <a href="{{ url }}/action={{ type }}&{{ fs }}&openFile"><i class="fa {{fileType}}"></i> {{ fs }}</a></pre>
+
+  {{else}}
+  <pre><a href="{{ url }}/action={{ type }}&{{ fs }}&openConfig"><i class="fa fa-cog"></i></a> <a href="{{ url }}/action={{ type }}&{{ fs }}&open"><i class="fa {{icon}}"></i> {{ fs }}</a></pre>
+
+  {{/if}}
+
+  {{else}}
+
+  <div class="card">No Such file or directory</div>
+
+  {{/each}}
+</div>

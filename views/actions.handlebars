@@ -1,0 +1,37 @@
+{{#if (eq type "read")}}
+<form action="{{ url }}/apply=write&{{ fileName }}&file" method="post">
+				<textarea rows="15" cols="{{size}}" name="content" class="form form-control">{{ content }}</textarea>
+  <br />
+  <center>
+    <div style="font-size: 30px; text-decoration: none" class="card">
+      <button style="background: none; border: none" type="submit">
+        <a href="#"><i class="fa fa-save"></i></a>
+      </button>
+    </div>
+  </center>
+</form>
+
+{{else if (eq type "config")}}
+
+<form method="post" action="{{ url }}/apply=delete&{{ name }}&{{ fType }}">
+  <div class="card card-body">
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </div>
+	</form>
+	<form method="post" action="{{url}}/apply=rename&{{name}}&any">
+    <div class="card card-body">
+      <button type="submit" class="btn btn-warning">Rename</button>
+		</div>
+	</form>
+{{else}}
+
+<form action="{{url}}/rename" method="post">
+<input name="newName" type="text" value="{{old}}" class="form form-control">
+<input type="hidden" name="old" value="{{old}}">
+<br>
+<input type="hidden" name="type" value="{{type}}">
+<button type="submit" class="btn btn-warning">Rename</button>
+</form>
+
+	{{/if}}
+</form>
