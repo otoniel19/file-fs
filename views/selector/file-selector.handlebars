@@ -1,0 +1,40 @@
+<style>
+  div {
+    font-size: 30px;
+    text-decoration: none;
+  }
+  a {
+    text-decoration: none;
+    color: blue;
+  }
+  button {
+    background: none;
+    border: none;
+    color: blue;
+  }
+</style>
+
+<center>
+  <div class="card">
+    <form action="{{ url }}/upDir" method="post">
+      <pre><button type="submit"><i class="fa fa-arrow-up"></i> </button><i class="fa fa-file"></i> {{total}} <button onclick="window.open('{{url}}/save')"><i class="fa fa-check"></i></button></pre>
+    </form>
+  </div>
+</center>
+<br />
+<div class="card card-body">
+  {{#each dir}}
+  {{#if file}}
+  <form method="post" action="{{ url }}/new">
+    <input name="name" type="hidden" value="{{ name }}" />
+    <pre><i class="fa {{icon}}-plus"></i><a href="{{url}}"><button type="submit"> {{ name }} </button></a></pre>
+  </form>
+  {{else}}
+  <form action="{{ url }}/cd" method="post">
+    <input type="hidden" name="name" value="{{ name }}" />
+    <pre><i class="fa {{ icon }}"></i> <a href="{{url}}"><button type="submit">{{ name }}</button></a></pre>
+  </form>
+  {{/if}}
+  <br />
+  {{/each}}
+</div>
